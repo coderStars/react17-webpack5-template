@@ -8,9 +8,9 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const { devMode } = require('./utils/index.js');
 const rules = require('./rules.js');
 
-let resolve = (dist) => path.resolve(__dirname, dist)
+let resolve = (dist) => path.resolve(__dirname, dist);
 
-const publicPath = '/app'
+const publicPath = '/app';
 
 module.exports = {
   mode: 'development',
@@ -22,7 +22,7 @@ module.exports = {
   },
   devServer: {
     client: {
-      logging: 'none', // https://webpack.js.org/configuration/dev-server/#devserverclient
+      logging: 'none' // https://webpack.js.org/configuration/dev-server/#devserverclient
     },
     hot: true,
     port: 8080,
@@ -35,10 +35,10 @@ module.exports = {
       rewrites: [
         // 如果publicPath设置了/abc，就不能直接设置historyApiFallback: true，这样会重定向到react-webpack-template根目录下的index.html
         // publicPath设置了/abc，就重定向到/abc，这样就可以了
-        { from: /^\/app$/, to: '/public/index.html' },
+        { from: /^\/app$/, to: '/public/index.html' }
       ],
       index: publicPath
-    },
+    }
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', 'jsx'], // 解析扩展名
@@ -52,17 +52,19 @@ module.exports = {
   plugins: [
     new WebpackBar(),
     new webpack.ProvidePlugin({
-      React: 'react', // 如果报错：React is not defined，则自动加载react
+      React: 'react' // 如果报错：React is not defined，则自动加载react
     }), // 自动加载，而不必模块import或require,https://webpack.js.org/plugins/provide-plugin/
     devMode && new ReactRefreshWebpackPlugin(),
-    !devMode ? new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      ignoreOrder: true,
-    }) : null,
+    !devMode
+      ? new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash:8].css',
+        ignoreOrder: true
+      })
+      : null,
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: resolve('../public/index.html')
-    }),
+    })
   ].filter((v) => v)
-}
+};

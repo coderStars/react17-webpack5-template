@@ -4,17 +4,15 @@
     "lib": [
       "dom",
       "esnext"
-    ], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
     "jsx": "react-jsx",
     "module": "commonjs",
     "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
     // "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
     "strict": true,
     "noImplicitAny": false,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */

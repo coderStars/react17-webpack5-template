@@ -1,5 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { devMode } = require('./utils/index.js')
+const { devMode } = require('./utils/index.js');
 
 const cssLoader = [
   !devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -7,18 +7,14 @@ const cssLoader = [
   'postcss-loader'
 ];
 
-const sassLoader = cssLoader.concat([
-  'sass-loader'
-]);
+const sassLoader = cssLoader.concat(['sass-loader']);
 
 module.exports = [
   {
     test: /.(js|jsx|ts|tsx)$/,
     loader: 'babel-loader',
     options: {
-      plugins: [
-        devMode && 'react-refresh/babel',
-      ].filter(Boolean),
+      plugins: [devMode && 'react-refresh/babel'].filter(Boolean)
     },
     exclude: /node_modules/
   },
@@ -28,6 +24,6 @@ module.exports = [
   },
   {
     test: /\.s[ac]ss$/,
-    use: sassLoader,
+    use: sassLoader
   }
 ];

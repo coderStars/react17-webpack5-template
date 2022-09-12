@@ -1,52 +1,47 @@
 // 除基础配置外，大部分配置项参考 https://www.npmjs.com/package/eslint-config-fornode
 module.exports = {
-  'env': {
-    'browser': true,
-    'node': true,
-    'es6': true,
-    'jest': true,
+  settings: {
+    react: {
+      // 不设置的话，yarn lint会提示:https://github.com/yannickcr/eslint-plugin-react#configuration
+      version: 'detect' // React version. "detect" automatically picks the version you have installed.
+    }
   },
-  'extends': [
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
+    jest: true
+  },
+  extends: [
     'eslint:recommended',
-    'plugin:vue/essential',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:jest/recommended',
+    'plugin:import/recommended',
+    'plugin:react/recommended',
+    'plugin:import/typescript', // 解析通过相对路径引入的tsx
+    'prettier'
   ],
-  'globals': {
-    'Atomics': 'readonly',
-    'SharedArrayBuffer': 'readonly'
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
-  'parserOptions': {
-    'ecmaVersion': 2018,
-    'parser': '@typescript-eslint/parser',
-    'sourceType': 'module'
+  parserOptions: {
+    ecmaVersion: 2018,
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module'
   },
-  'plugins': [
+  plugins: [
     // 'vue',
     // '@typescript-eslint',
     // 'json',
     // 'jest'
   ],
-  'rules': {
-    'indent': [
-      'error',
-      2
-    ],
+  rules: {
+    indent: ['error', 2],
     // Value ["unix","windows"] should NOT have more than 1 items.
-    'linebreak-style': [
-      'error',
-      'unix',
-    ],
-    'quotes': [
-      'error',
-      'single'
-    ],
-    'semi': [
-      'error',
-      'always'
-    ],
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
     // 控制逗号前后的空格
-    'comma-spacing': ['error', { 'before': false, 'after': true }],
+    'comma-spacing': ['error', { before: false, after: true }],
     // 'no-unused-vars': ['error', { 'args': 'none' }],
     'no-unused-vars': 'off',
     // '@typescript-eslint/no-unused-vars': [
@@ -58,13 +53,14 @@ module.exports = {
     //   }
     // ],
     // if else while for do后面的代码块需要{ }包围
-    'curly': [2, 'all'],
+    curly: [2, 'all'],
     'keyword-spacing': [
       'error',
       {
-        'after': true
+        after: true
       }
     ],
+    'react/react-in-jsx-scope': 0,
     'array-bracket-spacing': ['error', 'never'],
     // 'object-curly-spacing': ['error', 'never'],
     'computed-property-spacing': ['error', 'never'],
@@ -88,25 +84,31 @@ module.exports = {
     // 函数声明、具名函数表达式、函数调用中，函数名和 ( 之间不允许有空格
     'space-before-function-paren': [
       'error',
-      { 'anonymous': 'always', 'named': 'never', 'asyncArrow': 'always' }
+      { anonymous: 'always', named: 'never', asyncArrow: 'always' }
     ],
     // 禁止重复键值、参数、case, 默认均为开启
     // 'no-dupe-args': 2,
     // 'no-dupe-keys': 2,
     // 'no-duplicate-case': 2,
-    'no-empty': [2, { 'allowEmptyCatch': true }], // 禁止除catch外的空语句块
+    'no-empty': [2, { allowEmptyCatch: true }], // 禁止除catch外的空语句块
     'no-extra-boolean-cast': 2, // 禁止不必要的布尔转换
-    'max-lines': [1, {
-      'max': 700, // 推荐使用500行
-      'skipComments': true,
-      'skipBlankLines': true,
-    }], // 文件最大行数, warning
-    'max-lines-per-function': [1, {
-      'max': 60, // 推荐使用50，暂时放开
-      'skipComments': true,
-      'skipBlankLines': true,
-      'IIFEs': true
-    }], // 函数最大行数, warning
-    'max-depth': [1, 4], // 最大嵌套深度
+    'max-lines': [
+      1,
+      {
+        max: 700, // 推荐使用500行
+        skipComments: true,
+        skipBlankLines: true
+      }
+    ], // 文件最大行数, warning
+    'max-lines-per-function': [
+      1,
+      {
+        max: 60, // 推荐使用50，暂时放开
+        skipComments: true,
+        skipBlankLines: true,
+        IIFEs: true
+      }
+    ], // 函数最大行数, warning
+    'max-depth': [1, 4] // 最大嵌套深度
   }
 };
