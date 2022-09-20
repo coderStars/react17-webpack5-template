@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const webpack = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const { devMode } = require('./utils/index.js');
+const { PROD_MODE_TYPE } = require('./utils/index.js');
 const rules = require('./rules.js');
 
 let resolve = (dist) => path.resolve(__dirname, dist);
@@ -13,7 +13,7 @@ let resolve = (dist) => path.resolve(__dirname, dist);
 const publicPath = '/app';
 
 module.exports = {
-  mode: 'production',
+  mode: PROD_MODE_TYPE,
   entry: resolve('../src/index.tsx'),
   output: {
     path: resolve('../dist'),
@@ -54,13 +54,11 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react' // 如果报错：React is not defined，则自动加载react
     }), // 自动加载，而不必模块import或require,https://webpack.js.org/plugins/provide-plugin/
-    devMode && new ReactRefreshWebpackPlugin(),
-    !devMode
-      ? new MiniCssExtractPlugin({
-        filename: 'css/[name].[contenthash:8].css',
-        ignoreOrder: true
-      })
-      : null,
+    new ReactRefreshWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:8].css',
+      ignoreOrder: true
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
