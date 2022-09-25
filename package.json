@@ -8,7 +8,8 @@
     "lint": "eslint --config ./.eslintrc.js . --ext .js,.jsx,.ts,.tsx",
     "start": "cross-env NODE_ENV=development webpack serve --config ./script/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config ./script/webpack.prod.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "standard-version"
   },
   "keywords": [
     "react",
@@ -48,6 +49,7 @@
     "react-refresh": "^0.14.0",
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",
+    "standard-version": "^9.5.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.3.1",
     "typescript": "^4.8.3",
