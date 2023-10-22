@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>测试</div>
+  <input />
+  <word-count></word-count>
+  <word-count></word-count>
+  <word-count></word-count>
+  <template id="my-paragraph">
+    <p>My paragraph</p>
+  </template>
+  <script>
+    function htmlEncode(html) {
+      if (!html) {
+        return '';
+      }
+
+      if (typeof html !== 'string') {
+        return '';
+      }
+
+      let temp = document.createElement('div');
+      temp.innerHTML = html;
+      const result = temp.textContent || temp.innerText
+      return result;
+    }
+
+    const result = htmlEncode('&lfwefi&lt;');
+    console.log('========', result);
+  </script>
+</body>
+
+</html>

@@ -60,5 +60,6 @@ module.exports = {
       filename: 'index.html',
       template: resolve('../public/index.html')
     })
-  ].filter((v) => v)
+  ].filter((v) => v),
+  devtool: 'cheap-source-map'
 };
